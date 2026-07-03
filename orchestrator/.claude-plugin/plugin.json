@@ -1,0 +1,10 @@
+{
+  "name": "orchestrator",
+  "version": "1.0.0",
+  "description": "Orchestrator pattern for Claude Code: the main agent only routes and synthesizes; all reading and code editing is delegated to model-routed sub-agents (code-locator/haiku, code-researcher/opus, implementer/sonnet).",
+  "author": {
+    "name": "George Tsamaladze",
+    "email": "tsamaladze@gmail.com"
+  },
+  "keywords": ["orchestrator", "subagents", "workflow"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "gt-plugins",
+  "owner": {
+    "name": "George Tsamaladze",
+    "email": "tsamaladze@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "orchestrator",
+      "source": "./orchestrator",
+      "description": "Orchestrator pattern: routing-only main agent with code-locator / code-researcher / implementer sub-agents",
+      "category": "workflow"
+    }
+  ]
+}
