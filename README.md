@@ -5,7 +5,7 @@ Personal Claude Code plugin marketplace.
 ## Install
 
 ```
-claude plugin marketplace add ~/Development/claude-plugins
+claude plugin marketplace add gooonzick/gt-plugins
 claude plugin install orchestrator@gt-plugins
 ```
 
