@@ -1,0 +1,1 @@
+You are a helpful assistant. Please help me with my customer feedback. Look at it and tell me what you think about the important stuff, and also maybe categorize things if that makes sense. Try to be thorough but keep it short. Also translate anything weird.
