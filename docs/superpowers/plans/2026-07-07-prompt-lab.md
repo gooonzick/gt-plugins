@@ -494,7 +494,21 @@ Evidence-based prompt evaluation: test matrix → confirmed run plan → clean-c
    ```
 
    Spawn independent runs in parallel where the platform allows.
-6. **Judge.** One `prompt-lab:prompt-judge` call per case, with the TASK / SUCCESS CRITERIA / OUTPUT A / OUTPUT B blocks (Task-4 contract). **Blinding:** for even-numbered cases label the original "A" and the challenger "B"; for odd-numbered cases, swap. Keep the mapping in your notes; never include it in judge input. Single-version mode: only OUTPUT A, verdict pass/fail.
+6. **Judge.** One `prompt-lab:prompt-judge` call per case, with exactly:
+
+   ```
+   === TASK ===
+   <what the prompt is supposed to accomplish>
+   === SUCCESS CRITERIA ===
+   1. <criterion>
+   2. ...
+   === OUTPUT A ===
+   <output>
+   === OUTPUT B ===
+   <output — omit this block in single-version mode>
+   ```
+
+   **Blinding:** for even-numbered cases label the original "A" and the challenger "B"; for odd-numbered cases, swap. Keep the mapping in your notes; never include it in judge input. Single-version mode: only OUTPUT A, verdict pass/fail.
 7. **Report.**
 
    ```
@@ -873,7 +887,7 @@ git commit -m "feat(prompt-lab): eight thin command routers"
 
 **Interfaces:**
 - Consumes: PostToolUse stdin contract: JSON with `tool_input.file_path`.
-- Produces: stdout JSON `{"additionalContext": "..."}` on match; silence + exit 0 otherwise.
+- Produces: stdout JSON `{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": "..."}}` on match; silence + exit 0 otherwise.
 
 - [ ] **Step 1: Write hooks.json**
 
@@ -935,7 +949,7 @@ esac
 
 [ "$match" -eq 1 ] || exit 0
 
-printf '%s\n' '{"additionalContext": "A prompt-like file was just edited. If the user is iterating on this prompt'"'"'s wording or behavior, you may offer /prompt-lab:analyze or /prompt-lab:test for it. Do not interrupt unrelated work (mechanical renames, formatting, non-prompt content)."}'
+printf '%s\n' '{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": "A prompt-like file was just edited. If the user is iterating on this prompt'"'"'s wording or behavior, you may offer /prompt-lab:analyze or /prompt-lab:test for it. Do not interrupt unrelated work (mechanical renames, formatting, non-prompt content)."}}'
 exit 0
 ```
 
@@ -952,7 +966,7 @@ Run:
 ```bash
 echo '{"tool_name":"Edit","tool_input":{"file_path":"/x/prompts/extractor.md"}}' | prompt-lab/hooks/scripts/prompt-file-hint.sh
 ```
-Expected: one line of JSON containing `additionalContext`; exit 0.
+Expected: one line of JSON containing `hookSpecificOutput.additionalContext`; exit 0.
 
 - [ ] **Step 5: Functional test — non-prompt file is silent**
 

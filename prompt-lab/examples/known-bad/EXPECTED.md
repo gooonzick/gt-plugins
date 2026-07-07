@@ -3,7 +3,7 @@
 Analysis of each fixture MUST surface at least the flaws listed for it; the rubric dimension that should catch each flaw is in parentheses.
 
 ## vague-task.md
-- No concrete task: "important stuff", "maybe categorize if that makes sense" (1 Task clarity)
+- No concrete task: "important stuff", "maybe categorize things if that makes sense" (1 Task clarity)
 - Contradiction: "thorough but keep it short" (1 Task clarity)
 - No output format at all (5 Output format)
 - Decorative role (3 Role & context)

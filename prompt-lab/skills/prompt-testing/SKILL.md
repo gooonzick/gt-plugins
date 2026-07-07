@@ -28,7 +28,21 @@ Evidence-based prompt evaluation: test matrix → confirmed run plan → clean-c
    ```
 
    Spawn independent runs in parallel where the platform allows.
-6. **Judge.** One `prompt-lab:prompt-judge` call per case, with the TASK / SUCCESS CRITERIA / OUTPUT A / OUTPUT B blocks (Task-4 contract). **Blinding:** for even-numbered cases label the original "A" and the challenger "B"; for odd-numbered cases, swap. Keep the mapping in your notes; never include it in judge input. Single-version mode: only OUTPUT A, verdict pass/fail.
+6. **Judge.** One `prompt-lab:prompt-judge` call per case, with exactly:
+
+   ```
+   === TASK ===
+   <what the prompt is supposed to accomplish>
+   === SUCCESS CRITERIA ===
+   1. <criterion>
+   2. ...
+   === OUTPUT A ===
+   <output>
+   === OUTPUT B ===
+   <output — omit this block in single-version mode>
+   ```
+
+   **Blinding:** for even-numbered cases label the original "A" and the challenger "B"; for odd-numbered cases, swap. Keep the mapping in your notes; never include it in judge input. Single-version mode: only OUTPUT A, verdict pass/fail.
 7. **Report.**
 
    ```

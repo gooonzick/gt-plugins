@@ -31,5 +31,5 @@ esac
 
 [ "$match" -eq 1 ] || exit 0
 
-printf '%s\n' '{"additionalContext": "A prompt-like file was just edited. If the user is iterating on this prompt'"'"'s wording or behavior, you may offer /prompt-lab:analyze or /prompt-lab:test for it. Do not interrupt unrelated work (mechanical renames, formatting, non-prompt content)."}'
+printf '%s\n' '{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": "A prompt-like file was just edited. If the user is iterating on this prompt'"'"'s wording or behavior, you may offer /prompt-lab:analyze or /prompt-lab:test for it. Do not interrupt unrelated work (mechanical renames, formatting, non-prompt content)."}}'
 exit 0

@@ -105,7 +105,7 @@ Skills hold all methodology. Commands only route into them. Each SKILL.md keeps 
 2. Build a test matrix: typical inputs, edge cases, adversarial cases (including prompt-injection probes when the prompt consumes untrusted input). For templated prompts, fill variables with realistic values.
 3. **Cost gate:** present the run plan (`N cases × M versions = K runs`) and get explicit confirmation before spawning anything.
 4. Spawn one `prompt-runner` per (version, case) — parallel where possible. Runners receive the prompt and input verbatim, in clean context.
-5. Feed outputs to `prompt-judge` with randomized A/B labels and the success criteria. The judge never learns which version is "improved".
+5. Feed outputs to `prompt-judge` with deterministic counterbalanced A/B labels (alternated by case parity, mapping withheld from the judge) and the success criteria. The judge never learns which version is "improved".
 6. Report: per-case verdict table, per-criterion scores, aggregate win/loss, notable failures with quotes.
 
 **Limitation (documented in README):** runs execute on Claude via Claude Code subagents. For prompts targeting other vendors the run is an approximation; cross-vendor execution is out of scope for v1.
@@ -161,7 +161,7 @@ Each command file: frontmatter (`description`, `argument-hint`), a short body th
 Clean-context executor. Receives: the prompt under test (verbatim) + one test input. Instructions: treat the prompt as your operating instructions, process the input, return the raw response only — no meta-commentary, no analysis, no mention of being a test. This isolation prevents our critique from leaking into runs.
 
 ### `prompt-judge`
-Blind scorer. Receives: task description, success criteria, and outputs labeled A/B (labels randomized per case by the orchestrating skill). Returns structured JSON: per-criterion score (1–5) per output, verdict (`A|B|tie`) with one-sentence reason. Never told which output came from which version.
+Blind scorer. Receives: task description, success criteria, and outputs labeled A/B (labels alternated deterministically by case parity — not randomized — with the mapping withheld from the judge). Returns structured JSON: per-criterion score (1–5) per output, verdict (`A|B|tie`) with one-sentence reason. Never told which output came from which version.
 
 ## 6. Hook
 
