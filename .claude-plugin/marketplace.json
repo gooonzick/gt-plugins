@@ -11,6 +11,12 @@
       "source": "./orchestrator",
       "description": "Orchestrator pattern: routing-only main agent with code-locator / code-researcher / implementer sub-agents",
       "category": "workflow"
+    },
+    {
+      "name": "prompt-lab",
+      "source": "./prompt-lab",
+      "description": "Prompt engineering lab: analyze, improve, create, test, adapt, and catalog prompts — with evidence-based A/B verification",
+      "category": "workflow"
     }
   ]
 }

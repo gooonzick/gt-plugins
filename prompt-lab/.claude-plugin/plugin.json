@@ -1,0 +1,10 @@
+{
+  "name": "prompt-lab",
+  "version": "0.1.0",
+  "description": "Prompt engineering lab for Claude Code: analyze, improve, create, test, adapt, and catalog prompts. Improvements are verified by real test runs with blind A/B judging. Companion to promptingguide.ai.",
+  "author": {
+    "name": "George Tsamaladze",
+    "email": "tsamaladze@gmail.com"
+  },
+  "keywords": ["prompt-engineering", "prompts", "analysis", "testing", "promptingguide"]
+}
