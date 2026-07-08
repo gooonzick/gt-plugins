@@ -1,0 +1,15 @@
+{
+  "name": "gt-plugins",
+  "description": "Personal Codex plugins by George Tsamaladze",
+  "owner": {
+    "name": "George Tsamaladze",
+    "email": "tsamaladze@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "prompt-lab",
+      "source": "./plugins/prompt-lab",
+      "description": "Prompt engineering lab: analyze, improve, create, test, adapt, and catalog prompts — with evidence-based A/B verification"
+    }
+  ]
+}
