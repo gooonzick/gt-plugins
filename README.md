@@ -32,7 +32,11 @@ claude plugin install prompt-lab@gt-plugins
 make install-codex        # = codex plugin marketplace add <this repo>
 ```
 
-then install `prompt-lab` via `codex` → `/plugins`.
+```
+codex plugin add prompt-lab@gt-plugins
+```
+
+(or install/manage interactively via `codex` → `/plugins`).
 
 **OpenCode**
 
@@ -47,8 +51,14 @@ Bump `version` in BOTH manifests of the plugin (`.claude-plugin/plugin.json` and
 
 ```
 claude plugin marketplace update gt-plugins && claude plugin update prompt-lab@gt-plugins
-codex plugin marketplace upgrade gt-plugins
+codex plugin add prompt-lab@gt-plugins   # re-adds from the local marketplace, refreshing the cached copy
 ```
+
+`codex plugin marketplace upgrade gt-plugins` does NOT work here — this marketplace is registered
+as a local directory, and `upgrade` only supports Git-backed marketplaces (errors with
+"marketplace `gt-plugins` is not configured as a Git marketplace"). `codex plugin add` re-copies
+the plugin from the repo into `~/.codex/plugins/cache/gt-plugins/prompt-lab/<version>` even when
+the version is unchanged, so it's the reliable way to pick up local edits.
 
 OpenCode needs nothing — it reads the repo live through symlinks.
 
